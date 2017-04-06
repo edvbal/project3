@@ -22,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences preferencesName = getSharedPreferences("name", 0);
+        preferencesName.edit().remove("name").apply();
+        SharedPreferences preferencesScore = getSharedPreferences("score", 0);
+        preferencesScore.edit().remove("score").apply();
+
         enterName = (EditText) findViewById(R.id.enterName);
         startQuizz = (Button) findViewById(R.id.startQuizz);
 

@@ -1,6 +1,8 @@
 package com.example.android.project3;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +30,7 @@ public class QuizActivity extends AppCompatActivity {
     Button right;
 
     int questionNumber;
-    int score;
+    int scores;
     int[] questions = new int[]{R.string.question1, R.string.question2, R.string.question3, R.string.question4,
             R.string.question5, R.string.question6, R.string.question7, R.string.question8, R.string.question9, R.string.question10};
 
@@ -54,7 +56,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         questionNumber = 0;
-        score = 0;
+        scores = 0;
         question = (TextView) findViewById(R.id.question);
         answersRadio = new RadioButton[]{(RadioButton) findViewById(R.id.answer1),
                 (RadioButton) findViewById(R.id.answer2),
@@ -81,17 +83,20 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (questionNumber >= 0 && questionNumber < 9) {
-                    if (answersRadio[rightAnswers2[questionNumber]].isChecked()){
-                        score++;
-                        Toast.makeText(getApplicationContext(), Integer.toString(score), Toast.LENGTH_SHORT).show();
+                    if (answersRadio[rightAnswers2[questionNumber]].isChecked()) {
+                        scores++;
+                        Toast.makeText(getApplicationContext(), Integer.toString(scores), Toast.LENGTH_SHORT).show();
                     }
                     questionNumber++;
                     showQuiz();
-                }
-                else if (questionNumber == 9) {
+                } else if (questionNumber == 9) {
+                    SharedPreferences score = getApplicationContext().getSharedPreferences("score", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit = score.edit();
+                    edit.putInt("score",scores);
+                    edit.apply();
 
-                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), FinalScore.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -109,13 +114,19 @@ public class QuizActivity extends AppCompatActivity {
         if (questionNumber == 0) {
             left.setText(R.string.toMenu);
             right.setText(R.string.nextQuestion);
+            image.setImageResource(R.drawable.android_quiz);
             for (int i = questionNumber; i < questionNumber + 3; i++) {
 
                 answersRadio[tempRadio].setText(answers[i]);
                 tempRadio++;
             }
 
-        } else if (questionNumber > 0 && questionNumber < 9) {
+        } else if (questionNumber > 0 && questionNumber <= 9) {
+            if (questionNumber == 5)
+                image.setImageResource(R.drawable.question6);
+            else if (questionNumber == 6)
+                image.setImageResource(R.drawable.question7);
+            else image.setImageResource(R.drawable.android_quiz);
             left.setText(R.string.prevQuestion);
             right.setText(R.string.nextQuestion);
             for (int i = questionNumber * 4; i <= questionNumber * 4 + 3; i++) {
