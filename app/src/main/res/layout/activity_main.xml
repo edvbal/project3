@@ -38,16 +38,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:hint="@string/hintStart"/>
+                android:hint="@string/hintStart"
+                android:id="@+id/enterName"/>
             <Button
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/startBTN"/>
+                android:text="@string/startBTN"
+                android:id="@+id/startQuizz"
+                android:onClick="startQuizz"/>
 
         </LinearLayout>
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:text="test"
+            android:onClick="test"/>
+
 
     </LinearLayout>
-
 </ScrollView>
