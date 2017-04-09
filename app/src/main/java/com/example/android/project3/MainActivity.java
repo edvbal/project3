@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         preferencesName.edit().remove("name").apply();
         SharedPreferences preferencesScore = getSharedPreferences("score", 0);
         preferencesScore.edit().remove("score").apply();
+        SharedPreferences preferencesQuestion = getSharedPreferences("score", 0);
+        preferencesQuestion.edit().remove("question").apply();
 
         enterName = (EditText) findViewById(R.id.enterName);
         startQuizz = (Button) findViewById(R.id.startQuizz);
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit = name.edit();
             edit.putString("name", enterName.getText().toString());
             edit.apply();
+
+            SharedPreferences question = this.getSharedPreferences("question", Context.MODE_PRIVATE);
+            SharedPreferences.Editor edit2 = question.edit();
+            edit2.putInt("question", 0);
+            edit2.apply();
 
             Intent intent = new Intent(this, QuizActivity.class);
             startActivity(intent);

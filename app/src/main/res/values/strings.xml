@@ -9,13 +9,12 @@
     <string name="answer1.2">dp</string>
     <string name="answer1.3">px</string>
     <string name="answer1.4">pt</string>
-    <string name="correctAnswer1">sp</string>
 
-    <string name="question2">Which layout has attribute android:orientation ?</string>
+    <string name="question2">Which layouts has attribute android:orientation ?</string>
     <string name="answer2.1">LinearLayout</string>
     <string name="answer2.2">WebView</string>
     <string name="answer2.3">RelativeLayout</string>
-    <string name="answer2.4">None of above</string>
+    <string name="answer2.4">TableLayout</string>
 
     <string name="correctAnswer2">No</string>
 
@@ -24,56 +23,48 @@
     <string name="answer3.2">Drawable</string>
     <string name="answer3.3">Wallpapers</string>
     <string name="answer3.4">Images</string>
-    <string name="correctAnswer3">sp</string>
+    <string name="correctAnswer3">1</string>
 
     <string name="question4">What is the name of ImageView attribute that lets to crop the image?</string>
     <string name="answer4.1">android:scaleType</string>
     <string name="answer4.2">android:cropType</string>
     <string name="answer4.3">android:cropStyle</string>
     <string name="answer4.4">android:imgRatio</string>
-    <string name="correctAnswer4">sp</string>
+    <string name="correctAnswer4">0</string>
 
     <string name="question5">What is the name of a class that is used to display information for a short period of time?</string>
     <string name="answer5.1">Notification</string>
     <string name="answer5.2">Message</string>
     <string name="answer5.3">Toast</string>
     <string name="answer5.4">None of these</string>
-    <string name="correctAnswer5">sp</string>
+    <string name="correctAnswer5">2</string>
 
     <string name="question6">What will this function print to logcat?</string>
     <string name="answer6.1">1</string>
     <string name="answer6.2">0</string>
     <string name="answer6.3">Exception will be thrown</string>
     <string name="answer6.4">It will not compile</string>
-    <string name="correctAnswer6">sp</string>
 
     <string name="question7">What will this function print to logcat?</string>
     <string name="answer7.1">2</string>
     <string name="answer7.2">1</string>
     <string name="answer7.3">3</string>
     <string name="answer7.4">It will not compile</string>
-    <string name="correctAnswer7">sp</string>
 
     <string name="question8">What is the keyword used for class inheritance in Java?</string>
     <string name="answer8.1">Inherit</string>
     <string name="answer8.2">Implement</string>
     <string name="answer8.3">Extends</string>
     <string name="answer8.4">None of above</string>
-    <string name="correctAnswer8">sp</string>
 
     <string name="question9">An object that provides runtime binding between separate components, such as two activities.</string>
-    <string name="answer9.1">Intent</string>
-    <string name="answer9.2">Jump</string>
-    <string name="answer9.3">Start</string>
-    <string name="answer9.4">HeaderLocation</string>
-    <string name="correctAnswer9">sp</string>
+    <string name="correctAnswer9">Intent</string>
 
     <string name="question10">What is APK in android?</string>
     <string name="answer10.1">Android packages kingdom</string>
     <string name="answer10.2">Android packages kitchen </string>
     <string name="answer10.3">Android packaging kit</string>
     <string name="answer10.4">None of the above</string>
-    <string name="correctAnswer10">sp</string>
 
     <string name="finishQuiz">Finish quiz</string>
     <string name="prevQuestion">Previous question</string>
