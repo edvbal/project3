@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--.Correct answers for checkboxes and radio buttons........................................-->
     <integer name="correctAnswer1">0</integer>
     <integer name="correctAnswer2">0</integer>
     <integer name="correctAnswer2.1">3</integer>
@@ -10,5 +11,5 @@
     <integer name="correctAnswer7">0</integer>
     <integer name="correctAnswer8">2</integer>
     <integer name="correctAnswer10">2</integer>
-
+    <!--.........................................................................................-->
 </resources>
