@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mainLayoutPadding">16dp</dimen>
+    <dimen name="paddingTopWelcomeMSG1">46dp</dimen>
+    <dimen name="paddingBotWelcomeMSG2">46dp</dimen>
+    <dimen name="paddingTopEditText">26dp</dimen>
+    <dimen name="paddingInsertTextQuestion">36dp</dimen>
 
+    <dimen name="textSizeHeader6">26sp</dimen>
+    <dimen name="textSizeHeader5">20sp</dimen>
 </resources>

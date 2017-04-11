@@ -4,8 +4,9 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/grey</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <!-- CardView style. -->
@@ -22,4 +23,148 @@
         <item name="android:focusableInTouchMode">true</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="imageMainActivity" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:src">@drawable/android</item>
+    </style>
+
+    <style name="textMainActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader6</item>
+        <item name="android:textColor">@color/lime</item>
+    </style>
+
+    <style name="mainActivityChildLinearL" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="editTextMainActivity">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">2</item>
+        <item name="android:hint">@string/hintStart</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingTop">@dimen/paddingTopEditText</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textColorHint">@color/orange</item>
+        <item name="android:textSize">@dimen/textSizeHeader5</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="buttonMainActivity">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/round_button</item>
+    </style>
+
+    <style name="scrollViewMainActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/main_background</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+
+    <style name="scrollViewQuizActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/main_background</item>
+        <item name="android:fillViewport">true</item>
+    </style>
+
+    <style name="quizParentRelativeLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/mainLayoutPadding</item>
+    </style>
+
+    <style name="quizChildRelativeLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="quizCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="quizParentLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/quiz_background2</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="imageQuizActivity" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:src">@drawable/android_quiz</item>
+    </style>
+
+    <style name="textQuizActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader5</item>
+        <item name="android:textColor">@color/lime</item>
+    </style>
+
+    <style name="textQuizActivity2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">6</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader5</item>
+        <item name="android:textColor">@color/lime</item>
+        <item name="android:padding">@dimen/paddingInsertTextQuestion</item>
+    </style>
+
+    <style name="quizRadioGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">4</item>
+
+    </style>
+
+    <style name="quizChildLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="quizRadioCheckButtons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="buttonQuizActivity">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/round_button</item>
+    </style>
+
+
 </resources>
+

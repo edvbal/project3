@@ -1,86 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#efeaea"
-    android:fillViewport="true"
-    android:padding="16dp"
-    android:windowSoftInputMode="adjustNothing">
+    style="@style/scrollViewQuizActivity"
+    android:fillViewport="true">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/mainLayoutPadding"
+        style="@style/quizParentRelativeLayout"
         >
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewRadioB"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/quizCardView"
+            >
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                style="@style/quizParentLinearLayout">
 
                 <ImageView
                     android:id="@+id/imageRadioB"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3" />
+                    style="@style/imageQuizActivity"/>
 
                 <TextView
                     android:id="@+id/questionRadioB"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:padding="36dp"
-                    android:textAlignment="center" />
+                    style="@style/textQuizActivity" />
+
 
                 <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4">
+                    style="@style/quizRadioGroup">
 
                     <RadioButton
                         android:id="@+id/answerRadioB1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        style="@style/quizRadioCheckButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        style="@style/quizRadioCheckButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        style="@style/quizRadioCheckButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        style="@style/quizRadioCheckButtons" />
 
                 </RadioGroup>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    style="@style/quizChildRelativeLayout">
 
                     <Button
                         android:id="@+id/buttonLeftRadioB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/buttonQuizActivity"
                         android:onClick="leftClick" />
 
                     <Button
                         android:id="@+id/buttonRightRadioB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/buttonQuizActivity"
                         android:layout_alignParentRight="true"
                         android:onClick="rightClick" />
 
@@ -92,70 +67,53 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewCheckB"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/quizCardView"
             android:visibility="invisible">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                style="@style/quizParentLinearLayout">
 
                 <ImageView
                     android:id="@+id/imageCheckB"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3" />
+                    style="@style/imageQuizActivity"/>
 
                 <TextView
                     android:id="@+id/questionCheckB"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:gravity="center_vertical"
-                    android:padding="36dp"
-                    android:textAlignment="center" />
+                    style="@style/textQuizActivity" />
+                <LinearLayout
+                    style="@style/quizChildLinearLayout">
+                    <CheckBox
+                        android:id="@+id/answerCheckB1"
+                        style="@style/quizRadioCheckButtons" />
 
-                <CheckBox
-                    android:id="@+id/answerCheckB1"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <CheckBox
+                        android:id="@+id/answerCheckB2"
+                        style="@style/quizRadioCheckButtons" />
+                         />
 
-                <CheckBox
-                    android:id="@+id/answerCheckB2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <CheckBox
+                        android:id="@+id/answerCheckB3"
+                        style="@style/quizRadioCheckButtons" />
+                        />
 
-                <CheckBox
-                    android:id="@+id/answerCheckB3"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    <CheckBox
+                        android:id="@+id/answerCheckB4"
+                        style="@style/quizRadioCheckButtons" />
+                        />
 
-                <CheckBox
-                    android:id="@+id/answerCheckB4"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
 
+                </LinearLayout>
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    style="@style/quizChildRelativeLayout">
 
                     <Button
                         android:id="@+id/buttonLeftCheckB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/buttonQuizActivity"
                         android:onClick="leftClick" />
 
                     <Button
                         android:id="@+id/buttonRightCheckB"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/buttonQuizActivity"
                         android:layout_alignParentRight="true"
                         android:onClick="rightClick" />
 
@@ -165,53 +123,38 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewInsertText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="invisible">
+            style="@style/quizCardView">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            style="@style/quizParentLinearLayout">
 
             <ImageView
                 android:id="@+id/imageInsertText"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4" />
+                style="@style/imageQuizActivity"/>
 
             <TextView
                 android:id="@+id/questionInsertText"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
-                android:gravity="center_vertical"
-                android:padding="36dp"
-                android:textAlignment="center" />
+                style="@style/textQuizActivity"
+                 />
 
             <EditText
                 android:id="@+id/insertAnswer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3" />
+                android:layout_weight="4" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                style="@style/quizChildRelativeLayout">
 
                 <Button
                     android:id="@+id/buttonLeftInsertText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/buttonQuizActivity"
                     android:onClick="leftClick" />
 
                 <Button
                     android:id="@+id/buttonRightInsertText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/buttonQuizActivity"
                     android:layout_alignParentRight="true"
                     android:onClick="rightClick" />
 
@@ -221,21 +164,16 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewFinalScore"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            style="@style/quizCardView"
             android:visibility="invisible">
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/quizParentLinearLayout">
 
             <ImageView
                 android:id="@+id/finalImage"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4" />
+                style="@style/imageQuizActivity"/>
 
             <TextView
                 android:id="@+id/finalScore"
@@ -250,24 +188,18 @@
                 android:layout_weight="2" />
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1">
+                style="@style/quizChildRelativeLayout">
 
                 <Button
                     android:id="@+id/finalButtonLeft"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="backToMenuButton"
-                    android:text="@string/toMenu" />
+                    style="@style/buttonQuizActivity"
+                    android:onClick="backToMenuButton" />
 
                 <Button
                     android:id="@+id/finalButtonRight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/buttonQuizActivity"
                     android:layout_alignParentRight="true"
-                    android:onClick="shareButton"
-                    android:text="@string/share" />
+                    android:onClick="shareButton" />
 
             </RelativeLayout>
         </LinearLayout>

@@ -48,9 +48,11 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit2 = question.edit();
             edit2.putInt("question", 0);
             edit2.apply();
+            Toast.makeText(this,"Good luck "+enterName.getText().toString(),Toast.LENGTH_SHORT).show();
             // starts QuizActivity
             Intent intent = new Intent(this, QuizActivity.class);
             startActivity(intent);
+            String string = "asd";
         }
     }
     //----------------------------------------------------------------------------------------------

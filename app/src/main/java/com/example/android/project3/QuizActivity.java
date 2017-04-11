@@ -78,7 +78,7 @@ public class QuizActivity extends AppCompatActivity {
     // @correctAnswersInsertT stores correct answers for user insert type question.
     String correctAnswersInsertT;
     // @questionOpenBefore stores info if question was already answered.
-    boolean[] questionOpenBefore = new boolean[9];
+    boolean[] questionOpenBefore = new boolean[10];
 
     //----------------------------------------------------------------------------------------------
     @Override
@@ -233,7 +233,7 @@ public class QuizActivity extends AppCompatActivity {
             left = (Button) cardViewRadioB.findViewById(R.id.buttonLeftRadioB);
             // Making sure questions that require different image or button labels will get them.
             if (questionNumber == 0) {
-                image.setImageResource(R.drawable.android);
+                image.setImageResource(R.drawable.android_quiz);
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.toMenu);
             } else if (questionNumber == 5) {
@@ -250,7 +250,7 @@ public class QuizActivity extends AppCompatActivity {
             } else {
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.prevQuestion);
-                image.setImageResource(R.drawable.android);
+                image.setImageResource(R.drawable.android_quiz);
             }
             // Creating RadioButton array and find RadioButton Views from XML.
             answersRadio = new RadioButton[]{
@@ -282,14 +282,17 @@ public class QuizActivity extends AppCompatActivity {
             // if statement checks if its not the 2nd or 9th questions which are not radio button
             // answer questions. So the logic after this if statement applies to radio button
             // questions evaluating.
-            if (questionNumber != 1 && questionNumber != 8)
+            if (questionNumber != 1 && questionNumber < 8){
                 // if statement checks if correct answer is checked and increases score if so and
                 // checks question answered.
                 if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()
                         && !questionOpenBefore[questionNumber]) {
                     scores++;
                     questionOpenBefore[questionNumber] = true;
+                    Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
                 }
+
+            }
                 // else if statement checks if its 2nd question which is checkbox answer question.
                 // So the logic after this if statement applies to user input question evaluating.
                 else if (questionNumber == 1) {
@@ -306,6 +309,8 @@ public class QuizActivity extends AppCompatActivity {
                             !questionOpenBefore[questionNumber]) {
                         scores++;
                         questionOpenBefore[questionNumber] = true;
+                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+
                     }
                     //else if statement checks if either correct answer is checked and gives 0.5 points.
                     // and checks question answered.
@@ -313,6 +318,8 @@ public class QuizActivity extends AppCompatActivity {
                             !questionOpenBefore[questionNumber]) {
                         scores += 0.5;
                         questionOpenBefore[questionNumber] = true;
+                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+
                     }
                 }
                 //--------------------------------------------------------------------------------------
@@ -326,6 +333,8 @@ public class QuizActivity extends AppCompatActivity {
                     if (answerInsertText.equals(correctAnswersInsertT) &&
                             !questionOpenBefore[questionNumber]) {
                         scores++;
+                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+
                         questionOpenBefore[questionNumber] = true;
                     }
                 }
@@ -361,7 +370,7 @@ public class QuizActivity extends AppCompatActivity {
         if (questionNumber == 0) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
-        } else if (questionNumber > 0 && questionNumber < 9) {
+        } else if (questionNumber > 0 && questionNumber <= 9) {
             SharedPreferences question = getApplicationContext().getSharedPreferences(
                     "question", Context.MODE_PRIVATE);
             SharedPreferences.Editor edit = question.edit();

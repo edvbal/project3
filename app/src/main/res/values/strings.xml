@@ -61,7 +61,8 @@
     <string name="answer10.4">None of the above</string>
     <!--.........................................................................................-->
     <!--.Strings for TextViews and Buttons.......................................................-->
-    <string name="welcomeMSG">How much do you know about Android developing?</string>
+    <string name="welcomeMSG">How much do you know about </string>
+    <string name="welcomeMSG2">Android developing?</string>
     <string name="startBTN">Start quizz!</string>
     <string name="hintStart">Enter your name</string>
     <string name="finishQuiz">Finish quiz</string>

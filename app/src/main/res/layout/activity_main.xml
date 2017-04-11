@@ -2,48 +2,35 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#efeaea"
-    android:fillViewport="true"
+    style="@style/scrollViewMainActivity"
     tools:context="com.example.android.project3.MainActivity">
 
-    <LinearLayout
-        style="@style/mainActivityParentLinearL">
+    <LinearLayout style="@style/mainActivityParentLinearL">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:src="@drawable/android"
-            />
+        <ImageView style="@style/imageMainActivity" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:textAlignment="center"
-            android:gravity="center_vertical"
+            style="@style/textMainActivity"
+            android:paddingTop="@dimen/paddingTopWelcomeMSG1"
             android:text="@string/welcomeMSG" />
 
+        <TextView
+            style="@style/textMainActivity"
+            android:paddingBottom="@dimen/paddingBotWelcomeMSG2"
+            android:text="@string/welcomeMSG2" />
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            style="@style/mainActivityChildLinearL">
+
             <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="@string/hintStart"
+                style="@style/editTextMainActivity"
                 android:id="@+id/enterName"/>
+
             <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/startBTN"
                 android:id="@+id/startQuizz"
-                android:onClick="startQuizz"/>
+                android:onClick="startQuizz"
+                android:text="@string/startBTN"
+                style="@style/buttonMainActivity"/>
 
         </LinearLayout>
 
