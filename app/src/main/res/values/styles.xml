@@ -122,6 +122,17 @@
         <item name="android:paddingLeft">@dimen/paddingQuizText</item>
         <item name="android:textColor">@color/lime</item>
     </style>
+    <style name="finalScoreQuizActivity">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">3</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/finalScore</item>
+        <item name="android:paddingLeft">@dimen/paddingQuizText</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
 
     <style name="textQuizActivityQuestion">
         <item name="android:layout_width">match_parent</item>

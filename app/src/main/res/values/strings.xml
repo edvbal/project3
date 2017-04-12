@@ -72,6 +72,7 @@
     <string name="share">Share score</string>
     <string name="questionNumber">Question nr. : </string>
     <string name="enterAnswer">Enter your answer here</string>
+    <string name="points"> Points</string>
     <!--.........................................................................................-->
     <!--.Final score texts.......................................................................-->
     <string name="finalHigh">You are the SUPERMAN of Android Developing !</string>

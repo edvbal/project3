@@ -175,18 +175,19 @@
             <ImageView
                 android:id="@+id/finalImage"
                 style="@style/imageQuizActivity"
-                android:layout_weight="5"/>
+                android:layout_weight="6"/>
 
             <TextView
                 android:id="@+id/finalScore"
-                style="@style/textQuizActivity"
-                android:layout_weight="3"/>
+                style="@style/finalScoreQuizActivity"
+
+                />
 
             <TextView
                 android:id="@+id/finalText"
                 style="@style/textQuizActivity"
-                android:layout_weight="4"
-                android:layout_marginBottom="40dp"/>
+                android:layout_marginBottom="@dimen/paddingFinalScoreBottom"
+                />
 
             <RelativeLayout
                 style="@style/quizChildRelativeLayout">

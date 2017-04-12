@@ -41,7 +41,7 @@ public class QuizActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     Button right, left;            // @right,@left Buttons that will be used in CardViews
     TextView question;             // @question TextView that will be used in CardViews
-    TextView finalScoreText, finalText; // @finalScoreText,@finalText TextView used in final screen
+    TextView finalScoreTextView, finalText; // @finalScoreText,@finalText TextView used in final screen
     TextView showQuestionNumber;            // @showQuestionNumber shows question number
     //----------------------------------------------------------------------------------------------
     ImageView image;               // @image ImageView that will be used in CardViews
@@ -86,7 +86,8 @@ public class QuizActivity extends AppCompatActivity {
     Double finalScore;
     // @questionNumberText will store question number text
     String questionNumberText;
-
+    // @finalScoreText will store final score text
+    String finalScoreText;
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -284,7 +285,7 @@ public class QuizActivity extends AppCompatActivity {
                     (RadioButton) cardViewRadioB.findViewById(R.id.answerRadioB3),
                     (RadioButton) cardViewRadioB.findViewById(R.id.answerRadioB4)
             };
-            //radioGroup.clearCheck();
+            radioGroup.clearCheck();
             // Setting answers for radio buttons. For loop to 4 because there are 4 radio buttons.
             question.setText(questions[questionNumber]);
             for (int i = questionNumber * 4; i < questionNumber * 4 + 4; i++) {
@@ -431,7 +432,7 @@ public class QuizActivity extends AppCompatActivity {
         cardViewFinalScore.setVisibility(View.VISIBLE);
         // Find Views from XML.
         image = (ImageView) cardViewFinalScore.findViewById(finalImage);
-        finalScoreText = (TextView) cardViewFinalScore.findViewById(R.id.finalScore);
+        finalScoreTextView = (TextView) cardViewFinalScore.findViewById(R.id.finalScore);
         finalText = (TextView) cardViewFinalScore.findViewById(R.id.finalText);
         left = (Button) cardViewFinalScore.findViewById(R.id.finalButtonLeft);
         right = (Button) cardViewFinalScore.findViewById(R.id.finalButtonRight);
@@ -442,15 +443,18 @@ public class QuizActivity extends AppCompatActivity {
         // is displayed.
         if (finalScore > 7) {
             image.setImageResource(R.mipmap.android_high);
-            finalScoreText.setText(Double.toString(finalScore));
+            finalScoreText = Double.toString(finalScore) + " " + getString(R.string.points);
+            finalScoreTextView.setText(finalScoreText);
             finalText.setText(R.string.finalHigh);
         } else if (finalScore < 8 && finalScore > 4) {
             image.setImageResource(R.mipmap.android_mid);
-            finalScoreText.setText(Double.toString(finalScore));
+            finalScoreText = Double.toString(finalScore) + " " + getString(R.string.points);
+            finalScoreTextView.setText(finalScoreText);
             finalText.setText(R.string.finalMed);
         } else if (finalScore < 5) {
             image.setImageResource(R.mipmap.android_low);
-            finalScoreText.setText(Double.toString(finalScore));
+            finalScoreText = Double.toString(finalScore) + " " + getString(R.string.points);
+            finalScoreTextView.setText(finalScoreText);
             finalText.setText(R.string.finalLow);
         }
     }

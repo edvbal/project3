@@ -9,8 +9,10 @@
     <dimen name="paddingRadioBBottom">5dp</dimen>
     <dimen name="paddingEditTextQLeft">10dp</dimen>
     <dimen name="paddingQuizText">10dp</dimen>
+    <dimen name="paddingFinalScoreBottom">50dp</dimen>
 
     <dimen name="textSizeHeader6">26sp</dimen>
     <dimen name="textSizeHeader5">20sp</dimen>
     <dimen name="textSizeHeader4">16sp</dimen>
+    <dimen name="finalScore">36sp</dimen>
 </resources>
