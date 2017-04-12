@@ -18,30 +18,33 @@
                 <ImageView
                     android:id="@+id/imageRadioB"
                     style="@style/imageQuizActivity"/>
-
+                <TextView
+                    android:id="@+id/questionNumberRadioB"
+                    style="@style/textQuizActivityQuestion"/>
                 <TextView
                     android:id="@+id/questionRadioB"
                     style="@style/textQuizActivity" />
 
 
                 <RadioGroup
+                    android:id="@+id/radioGroup"
                     style="@style/quizRadioGroup">
 
                     <RadioButton
                         android:id="@+id/answerRadioB1"
-                        style="@style/quizRadioCheckButtons" />
+                        style="@style/quizRadioButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB2"
-                        style="@style/quizRadioCheckButtons" />
+                        style="@style/quizRadioButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB3"
-                        style="@style/quizRadioCheckButtons" />
+                        style="@style/quizRadioButtons" />
 
                     <RadioButton
                         android:id="@+id/answerRadioB4"
-                        style="@style/quizRadioCheckButtons" />
+                        style="@style/quizRadioButtons" />
 
                 </RadioGroup>
 
@@ -67,8 +70,7 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewCheckB"
-            style="@style/quizCardView"
-            android:visibility="invisible">
+            style="@style/quizCardView">
 
             <LinearLayout
                 style="@style/quizParentLinearLayout">
@@ -76,6 +78,9 @@
                 <ImageView
                     android:id="@+id/imageCheckB"
                     style="@style/imageQuizActivity"/>
+                <TextView
+                    android:id="@+id/questionNumberCheckB"
+                    style="@style/textQuizActivityQuestion"/>
 
                 <TextView
                     android:id="@+id/questionCheckB"
@@ -84,22 +89,19 @@
                     style="@style/quizChildLinearLayout">
                     <CheckBox
                         android:id="@+id/answerCheckB1"
-                        style="@style/quizRadioCheckButtons" />
+                        style="@style/quizCheckButtons" />
 
                     <CheckBox
                         android:id="@+id/answerCheckB2"
-                        style="@style/quizRadioCheckButtons" />
-                         />
+                        style="@style/quizCheckButtons" />
 
                     <CheckBox
                         android:id="@+id/answerCheckB3"
-                        style="@style/quizRadioCheckButtons" />
-                        />
+                        style="@style/quizCheckButtons" />
 
                     <CheckBox
                         android:id="@+id/answerCheckB4"
-                        style="@style/quizRadioCheckButtons" />
-                        />
+                        style="@style/quizCheckButtons" />
 
 
                 </LinearLayout>
@@ -132,6 +134,9 @@
             <ImageView
                 android:id="@+id/imageInsertText"
                 style="@style/imageQuizActivity"/>
+            <TextView
+                android:id="@+id/questionNumberInsertText"
+                style="@style/textQuizActivityQuestion"/>
 
             <TextView
                 android:id="@+id/questionInsertText"
@@ -140,9 +145,7 @@
 
             <EditText
                 android:id="@+id/insertAnswer"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4" />
+                style="@style/editTextQuiz"/>
 
             <RelativeLayout
                 style="@style/quizChildRelativeLayout">
@@ -164,28 +167,26 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardViewFinalScore"
-            style="@style/quizCardView"
-            android:visibility="invisible">
-
+            style="@style/quizCardView">
 
         <LinearLayout
             style="@style/quizParentLinearLayout">
 
             <ImageView
                 android:id="@+id/finalImage"
-                style="@style/imageQuizActivity"/>
+                style="@style/imageQuizActivity"
+                android:layout_weight="5"/>
 
             <TextView
                 android:id="@+id/finalScore"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2" />
+                style="@style/textQuizActivity"
+                android:layout_weight="3"/>
 
             <TextView
                 android:id="@+id/finalText"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2" />
+                style="@style/textQuizActivity"
+                android:layout_weight="4"
+                android:layout_marginBottom="40dp"/>
 
             <RelativeLayout
                 style="@style/quizChildRelativeLayout">

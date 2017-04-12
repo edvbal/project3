@@ -3,13 +3,14 @@
     <dimen name="mainLayoutPadding">16dp</dimen>
     <dimen name="paddingTopWelcomeMSG1">46dp</dimen>
     <dimen name="paddingBotWelcomeMSG2">46dp</dimen>
-    <dimen name="paddingTopEditText">26dp</dimen>
+    <dimen name="paddingTopEditText">10dp</dimen>
     <dimen name="paddingInsertTextQuestion">36dp</dimen>
     <dimen name="paddingRadioBLeft">10dp</dimen>
-    <dimen name="paddingRadioB">10dp</dimen>
+    <dimen name="paddingRadioBBottom">5dp</dimen>
+    <dimen name="paddingEditTextQLeft">10dp</dimen>
+    <dimen name="paddingQuizText">10dp</dimen>
 
     <dimen name="textSizeHeader6">26sp</dimen>
     <dimen name="textSizeHeader5">20sp</dimen>
     <dimen name="textSizeHeader4">16sp</dimen>
-
 </resources>

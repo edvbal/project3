@@ -12,12 +12,14 @@
         <TextView
             style="@style/textMainActivity"
             android:paddingTop="@dimen/paddingTopWelcomeMSG1"
-            android:text="@string/welcomeMSG" />
+            android:text="@string/welcomeMSG"
+            />
 
         <TextView
             style="@style/textMainActivity"
             android:paddingBottom="@dimen/paddingBotWelcomeMSG2"
-            android:text="@string/welcomeMSG2" />
+            android:text="@string/welcomeMSG2"
+            />
 
         <LinearLayout
             style="@style/mainActivityChildLinearL">

@@ -3,9 +3,8 @@
     <color name="colorPrimary">#FFCC80</color>
     <color name="colorPrimaryDark">#FFCC80</color>
     <color name="colorAccent">#FFCC80</color>
-    <color name="lime">#EEFF41</color>
+    <color name="lime">#D4E157</color>
     <color name="orange">#FFCC80</color>
     <color name="grey">#424242</color>
     <color name="transparent">@android:color/transparent</color>
-
 </resources>

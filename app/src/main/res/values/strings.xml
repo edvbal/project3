@@ -70,6 +70,8 @@
     <string name="nextQuestion">Next question</string>
     <string name="toMenu">Back to menu</string>
     <string name="share">Share score</string>
+    <string name="questionNumber">Question nr. : </string>
+    <string name="enterAnswer">Enter your answer here</string>
     <!--.........................................................................................-->
     <!--.Final score texts.......................................................................-->
     <string name="finalHigh">You are the SUPERMAN of Android Developing !</string>

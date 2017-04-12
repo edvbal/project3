@@ -1,20 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
+    <!--.........................................................................................-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/grey</item>
         <item name="colorAccent">@color/lime</item>
-
     </style>
-
-    <!-- CardView style. -->
-    <style name="CardView1">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
-
+    <!--.........................................................................................-->
+    <!-- Main activity styles. -->
+    <!--.........................................................................................-->
     <style name="mainActivityParentLinearL" parent="AppTheme">
         <item name="android:padding">@dimen/mainLayoutPadding</item>
         <item name="android:layout_width">match_parent</item>
@@ -28,13 +24,12 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">3</item>
-        <item name="android:src">@drawable/android</item>
+        <item name="android:src">@mipmap/android</item>
     </style>
 
     <style name="textMainActivity">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textAlignment">center</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:fontFamily">sans-serif-light</item>
@@ -46,6 +41,8 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">2</item>
+        <item name="android:paddingTop">@dimen/paddingTopEditText</item>
+
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -55,11 +52,9 @@
         <item name="android:layout_weight">2</item>
         <item name="android:hint">@string/hintStart</item>
         <item name="android:maxLines">1</item>
-        <item name="android:paddingTop">@dimen/paddingTopEditText</item>
         <item name="android:textColor">@color/orange</item>
         <item name="android:textColorHint">@color/orange</item>
         <item name="android:textSize">@dimen/textSizeHeader5</item>
-        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <style name="buttonMainActivity">
@@ -72,39 +67,40 @@
     <style name="scrollViewMainActivity">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/main_background</item>
+        <item name="android:background">@mipmap/green_background2</item>
         <item name="android:fillViewport">true</item>
     </style>
-
 
     <style name="scrollViewQuizActivity">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/main_background</item>
+        <item name="android:background">@mipmap/main_background</item>
         <item name="android:fillViewport">true</item>
     </style>
-
+    <!--.........................................................................................-->
+    <!-- Quiz activity styles. -->
+    <!--.........................................................................................-->
     <style name="quizParentRelativeLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">@dimen/mainLayoutPadding</item>
     </style>
 
     <style name="quizChildRelativeLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_weight">2</item>
     </style>
 
     <style name="quizCardView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
+        <item name="android:visibility">invisible</item>
     </style>
 
     <style name="quizParentLinearLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:background">@drawable/quiz_background2</item>
+        <item name="android:background">@mipmap/quiz_background</item>
         <item name="android:orientation">vertical</item>
     </style>
 
@@ -112,7 +108,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">3</item>
-        <item name="android:src">@drawable/android_quiz</item>
+        <item name="android:src">@mipmap/android_quiz</item>
     </style>
 
     <style name="textQuizActivity">
@@ -123,6 +119,18 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textSize">@dimen/textSizeHeader5</item>
+        <item name="android:paddingLeft">@dimen/paddingQuizText</item>
+        <item name="android:textColor">@color/lime</item>
+    </style>
+
+    <style name="textQuizActivityQuestion">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader5</item>
+        <item name="android:paddingLeft">@dimen/paddingQuizText</item>
         <item name="android:textColor">@color/lime</item>
     </style>
 
@@ -142,8 +150,6 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">4</item>
-
-
     </style>
 
     <style name="quizChildLinearLayout">
@@ -153,17 +159,30 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="quizRadioCheckButtons">
+    <style name="quizRadioButtons">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">sans-serif-light</item>
         <item name="android:textSize">@dimen/textSizeHeader4</item>
+        <item name="android:layout_marginLeft">@dimen/paddingRadioBLeft</item>
         <item name="android:paddingLeft">@dimen/paddingRadioBLeft</item>
-        <item name="android:textColor">@color/lime</item>
+        <item name="android:paddingBottom">@dimen/paddingRadioBBottom</item>
+        <item name="android:textColor">@color/orange</item>
         <item name="android:button">@drawable/radio_draw</item>
         <item name="colorAccent">@android:color/white</item>
-        <item name="android:paddingBottom">@dimen/paddingRadioB</item>
+    </style>
 
+    <style name="quizCheckButtons">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader4</item>
+        <item name="android:layout_marginLeft">@dimen/paddingRadioBLeft</item>
+        <item name="android:paddingLeft">@dimen/paddingRadioBLeft</item>
+        <item name="android:paddingBottom">@dimen/paddingRadioBBottom</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:button">@drawable/checkbox_draw</item>
     </style>
 
     <style name="buttonQuizActivity">
@@ -174,6 +193,18 @@
         <item name="android:background">@drawable/round_button</item>
     </style>
 
-
+    <style name="editTextQuiz">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">4</item>
+        <item name="android:hint">@string/enterAnswer</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingLeft">@dimen/paddingEditTextQLeft</item>
+        <item name="android:textColor">@color/lime</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textColorHint">@color/lime</item>
+        <item name="android:textSize">@dimen/textSizeHeader4</item>
+    </style>
+    <!--.........................................................................................-->
 </resources>
 

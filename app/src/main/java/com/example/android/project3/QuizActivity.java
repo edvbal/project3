@@ -13,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,12 +24,15 @@ import static com.example.android.project3.R.id.finalImage;
  */
 
 public class QuizActivity extends AppCompatActivity {
+    // String variables that will store key to save instance
     public static final String SAVE_SCORE = "saveScore";
     public static final String SAVE_CURRENT_QUESTION = "save_current_question";
+    public static final String SAVE_FINAL_SCORE = "saveFinalScore";
     //----------------------------------------------------------------------------------------------
     RadioButton[] answersRadio;    // RadioButton array that will hold answers
     CheckBox[] answersCheckBox;    // CheckBox array that will hold answers
     EditText insertedAnswer;       // EditText which will store user's input for answer
+    RadioGroup radioGroup;         // RadioGroup of radio buttons
     //----------------------------------------------------------------------------------------------
     CardView cardViewRadioB;       // @cardViewRadioB for radio button type answers
     CardView cardViewCheckB;       // @cardViewCheckB for checkbox button type answers
@@ -37,8 +41,8 @@ public class QuizActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     Button right, left;            // @right,@left Buttons that will be used in CardViews
     TextView question;             // @question TextView that will be used in CardViews
-    TextView finalScoreText, finalText; // @finalScoreText,@finalText TextView that will be used in final
-    // score CardView
+    TextView finalScoreText, finalText; // @finalScoreText,@finalText TextView used in final screen
+    TextView showQuestionNumber;            // @showQuestionNumber shows question number
     //----------------------------------------------------------------------------------------------
     ImageView image;               // @image ImageView that will be used in CardViews
     //----------------------------------------------------------------------------------------------
@@ -77,19 +81,26 @@ public class QuizActivity extends AppCompatActivity {
     // @correctAnswersInsertT stores correct answers for user insert type question.
     String correctAnswersInsertT;
     // @questionScores stores score for each question answered.
-    Double[] questionScores = new Double [10];
+    double[] questionScores = new double[10];
     // @finalScoreText stores final score.
     Double finalScore;
+    // @questionNumberText will store question number text
+    String questionNumberText;
+
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         setContentView(R.layout.activity_quiz);
+        // Reset user score.
+        for (int i = 0; i < questionScores.length; i++)
+            questionScores[i] = 0.0;
+        finalScore = 0.0;
         // Save the user's current game state
         if (savedInstance != null) {
-            for (int i = 0; i < questionScores.length; i++)
-                questionScores[i] = savedInstance.getDouble(SAVE_SCORE, questionScores[i]);
+            questionScores = savedInstance.getDoubleArray(SAVE_SCORE);
             questionNumber = savedInstance.getInt(SAVE_CURRENT_QUESTION, questionNumber);
+            finalScore = savedInstance.getDouble(SAVE_FINAL_SCORE, finalScore);
         }
         // Put string resources into @correctAnswersRadioB.
         correctAnswersRadioB = new int[]{
@@ -108,27 +119,26 @@ public class QuizActivity extends AppCompatActivity {
                 this.getResources().getInteger(R.integer.correctAnswer2_1)
         };
         correctAnswersInsertT = this.getString(R.string.correctAnswer9);
-        // Reset user score.
-        for (int i = 0; i < questionScores.length; i++)
-            questionScores[i] = 0.0;
-        finalScore = 0.0;
         // Find views in the XML resources.
         cardViewCheckB = (CardView) findViewById(R.id.cardViewCheckB);
         cardViewRadioB = (CardView) findViewById(R.id.cardViewRadioB);
         cardViewInsertText = (CardView) findViewById(R.id.cardViewInsertText);
         cardViewFinalScore = (CardView) findViewById(R.id.cardViewFinalScore);
         insertedAnswer = (EditText) cardViewInsertText.findViewById(R.id.insertAnswer);
-        // @showQuiz starts showing questions.
-        showQuiz();
+        // @showQuiz starts showing questions if final score wasn't already shown.
+        if (questionNumber == 11) {
+            finalScore();
+        } else
+            showQuiz();
     }
 
     //----------------------------------------------------------------------------------------------
     // Save state when rotating
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        for (int i = 0; i < questionScores.length; i++)
-            savedInstanceState.putDouble(SAVE_SCORE, questionScores[i]);
+        savedInstanceState.putDoubleArray(SAVE_SCORE, questionScores);
         savedInstanceState.putInt(SAVE_CURRENT_QUESTION, questionNumber);
+        savedInstanceState.putDouble(SAVE_FINAL_SCORE, finalScore);
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -137,8 +147,9 @@ public class QuizActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.getDouble(SAVE_SCORE);
+        savedInstanceState.getDoubleArray(SAVE_SCORE);
         savedInstanceState.getInt(SAVE_CURRENT_QUESTION);
+        savedInstanceState.getDouble(SAVE_FINAL_SCORE);
         super.onRestoreInstanceState(savedInstanceState);
     }
 
@@ -180,11 +191,15 @@ public class QuizActivity extends AppCompatActivity {
             image = (ImageView) cardViewCheckB.findViewById(R.id.imageCheckB);
             right = (Button) cardViewCheckB.findViewById(R.id.buttonRightCheckB);
             left = (Button) cardViewCheckB.findViewById(R.id.buttonLeftCheckB);
+            showQuestionNumber = (TextView) cardViewCheckB.findViewById(R.id.questionNumberCheckB);
             // Setting question text, buttons text and image.
             question.setText(questions[questionNumber]);
             right.setText(R.string.nextQuestion);
             left.setText(R.string.prevQuestion);
-            image.setImageResource(R.drawable.android_quiz);
+            image.setImageResource(R.mipmap.android_quiz);
+            int tmp = questionNumber + 1;
+            questionNumberText = getString(R.string.questionNumber) + " " + Integer.toString(tmp);
+            showQuestionNumber.setText(questionNumberText);
             // Creating CheckBox array and find CheckBox Views from XML.
             answersCheckBox = new CheckBox[]{
                     (CheckBox) cardViewCheckB.findViewById(R.id.answerCheckB1),
@@ -212,11 +227,15 @@ public class QuizActivity extends AppCompatActivity {
             image = (ImageView) cardViewInsertText.findViewById(R.id.imageInsertText);
             right = (Button) cardViewInsertText.findViewById(R.id.buttonRightInsertText);
             left = (Button) cardViewInsertText.findViewById(R.id.buttonLeftInsertText);
+            showQuestionNumber = (TextView) cardViewInsertText.findViewById(R.id.questionNumberInsertText);
             // Setting question text, buttons text and image.
             question.setText(questions[questionNumber]);
             right.setText(R.string.nextQuestion);
             left.setText(R.string.prevQuestion);
-            image.setImageResource(R.drawable.android_quiz);
+            image.setImageResource(R.mipmap.android_quiz);
+            int tmp = questionNumber + 1;
+            questionNumberText = getString(R.string.questionNumber) + " " + Integer.toString(tmp);
+            showQuestionNumber.setText(questionNumberText);
         }
         //------------------------------------------------------------------------------------------
         // Show quiz window for all the rest questions which has RadioButton type answers.
@@ -232,17 +251,22 @@ public class QuizActivity extends AppCompatActivity {
             image = (ImageView) cardViewRadioB.findViewById(R.id.imageRadioB);
             right = (Button) cardViewRadioB.findViewById(R.id.buttonRightRadioB);
             left = (Button) cardViewRadioB.findViewById(R.id.buttonLeftRadioB);
+            showQuestionNumber = (TextView) cardViewRadioB.findViewById(R.id.questionNumberRadioB);
+            radioGroup = (RadioGroup) cardViewRadioB.findViewById(R.id.radioGroup);
             // Making sure questions that require different image or button labels will get them.
+            int tmp = questionNumber + 1;
+            questionNumberText = getString(R.string.questionNumber) + " " + Integer.toString(tmp);
+            showQuestionNumber.setText(questionNumberText);
             if (questionNumber == 0) {
-                image.setImageResource(R.drawable.android_quiz);
+                image.setImageResource(R.mipmap.android_quiz);
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.toMenu);
             } else if (questionNumber == 5) {
-                image.setImageResource(R.drawable.question6);
+                image.setImageResource(R.mipmap.question6);
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.prevQuestion);
             } else if (questionNumber == 6) {
-                image.setImageResource(R.drawable.question7);
+                image.setImageResource(R.mipmap.question7);
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.prevQuestion);
             } else if (questionNumber == 9) {
@@ -251,7 +275,7 @@ public class QuizActivity extends AppCompatActivity {
             } else {
                 right.setText(R.string.nextQuestion);
                 left.setText(R.string.prevQuestion);
-                image.setImageResource(R.drawable.android_quiz);
+                image.setImageResource(R.mipmap.android_quiz);
             }
             // Creating RadioButton array and find RadioButton Views from XML.
             answersRadio = new RadioButton[]{
@@ -260,6 +284,7 @@ public class QuizActivity extends AppCompatActivity {
                     (RadioButton) cardViewRadioB.findViewById(R.id.answerRadioB3),
                     (RadioButton) cardViewRadioB.findViewById(R.id.answerRadioB4)
             };
+            //radioGroup.clearCheck();
             // Setting answers for radio buttons. For loop to 4 because there are 4 radio buttons.
             question.setText(questions[questionNumber]);
             for (int i = questionNumber * 4; i < questionNumber * 4 + 4; i++) {
@@ -284,53 +309,66 @@ public class QuizActivity extends AppCompatActivity {
             // if statement checks if its not the 2nd or 9th questions which are not radio button
             // answer questions. So the logic after this if statement applies to radio button
             // questions evaluating.
-            if (questionNumber != 1 && questionNumber < 8){
+            if (questionNumber != 1 && questionNumber < 8) {
+                int temp = 0;
+                for (RadioButton button : answersRadio)
+                    if (button.isChecked())
+                        temp++;
+                if (temp == 0) {
+                    Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 // if statement checks if correct answer is checked and increases score if so and
                 // checks question answered.
-                if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()) {
+                if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked())
                     questionScores[questionNumber] = 1.0;
-                    Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
-                }
 
             }
-                // else if statement checks if its 2nd question which is checkbox answer question.
-                // So the logic after this if statement applies to user input question evaluating.
-                else if (questionNumber == 1) {
-                    //if statement checks if all answers is checked and if it is informs user to fix it.
-                    if (answersCheckBox[0].isChecked() && answersCheckBox[1].isChecked() &&
-                            answersCheckBox[2].isChecked() && answersCheckBox[3].isChecked()) {
-                        Toast.makeText(this,
-                                "You can't select all the options !", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    // else if statement checks if both correct answers is checked and gives 1 point and
-                    // checks question answered.
-                    else if (answersCheckBox[0].isChecked() && answersCheckBox[3].isChecked()) {
-                        questionScores[questionNumber] = 1.0;
-                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
-
-                    }
-                    //else if statement checks if either correct answer is checked and gives 0.5 points.
-                    // and checks question answered.
-                    else if (answersCheckBox[0].isChecked() || answersCheckBox[3].isChecked()) {
-                        questionScores[questionNumber] = 0.5;
-                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
-
-                    }
+            // else if statement checks if its 2nd question which is checkbox answer question.
+            // So the logic after this if statement applies to user input question evaluating.
+            else if (questionNumber == 1) {
+                int temp = 0;
+                for (CheckBox button : answersCheckBox)
+                    if (button.isChecked())
+                        temp++;
+                if (temp == 0) {
+                    Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                //--------------------------------------------------------------------------------------
-                // else if statement checks if its 9th question which is user input answer question.
-                // So the logic after this if statement applies to user input question evaluating.
-                //--------------------------------------------------------------------------------------
-                else if (questionNumber == 8) {
-                    // User input answer is getting stored into @answerInsertText String.
-                    answerInsertText = insertedAnswer.getText().toString();
-                    // If user input is correct score is increased by 1. and checks question answered.
-                    if (answerInsertText.equals(correctAnswersInsertT)) {
-                        questionScores[questionNumber] = 1.0;
-                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
-                    }
+                //if statement checks if all answers is checked and if it is informs user to fix it.
+                if (answersCheckBox[0].isChecked() && answersCheckBox[1].isChecked() &&
+                        answersCheckBox[2].isChecked() && answersCheckBox[3].isChecked()) {
+                    Toast.makeText(this,
+                            "You can't select all the options !", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                // else if statement checks if both correct answers is checked and gives 1 point and
+                // checks question answered.
+                else if (answersCheckBox[0].isChecked() && answersCheckBox[3].isChecked())
+                    questionScores[questionNumber] = 1.0;
+
+                //else if statement checks if either correct answer is checked and gives 0.5 points.
+                // and checks question answered.
+                else if (answersCheckBox[0].isChecked() || answersCheckBox[3].isChecked())
+                    questionScores[questionNumber] = 0.5;
+
+            }
+            //--------------------------------------------------------------------------------------
+            // else if statement checks if its 9th question which is user input answer question.
+            // So the logic after this if statement applies to user input question evaluating.
+            //--------------------------------------------------------------------------------------
+            else if (questionNumber == 8) {
+                // User input answer is getting stored into @answerInsertText String.
+                answerInsertText = insertedAnswer.getText().toString();
+                // If user input is correct score is increased by 1. Also checks if input isnt empty
+                if(answerInsertText.isEmpty()){
+                    Toast.makeText(this,"Please insert an answer !",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else if (answerInsertText.equals(correctAnswersInsertT)) {
+                    questionScores[questionNumber] = 1.0;
+                }
+            }
             //--------------------------------------------------------------------------------------
             // After evaluating answer, question in internal storage is being increased and
             // @showQuiz() method is called.
@@ -345,12 +383,17 @@ public class QuizActivity extends AppCompatActivity {
         // This else if statement checks if its the last question.
         //------------------------------------------------------------------------------------------
         else if (questionNumber == 9) {
-            if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()) {
-                questionScores[questionNumber] = 1.0;
-                Toast.makeText(getApplicationContext(), Double.toString(questionScores[questionNumber]),
-                        Toast.LENGTH_SHORT).show();
+            int temp = 0;
+            for (RadioButton button : answersRadio)
+                if (button.isChecked())
+                    temp++;
+            if (temp == 0) {
+                Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                return;
             }
-            for(int i = 0; i < questionScores.length; i++)
+            if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked())
+                questionScores[questionNumber] = 1.0;
+            for (int i = 0; i < questionScores.length; i++)
                 finalScore += questionScores[i];
             finalScore();
         }
@@ -379,6 +422,8 @@ public class QuizActivity extends AppCompatActivity {
     // @question() initiates and fills up CardViews for final score window.
     //----------------------------------------------------------------------------------------------
     public void finalScore() {
+        // making question number 11 to avoid bugs after switching orientation
+        questionNumber = 11;
         // Making final score CardView visible and rest invisible.
         cardViewRadioB.setVisibility(View.INVISIBLE);
         cardViewInsertText.setVisibility(View.INVISIBLE);
@@ -396,15 +441,15 @@ public class QuizActivity extends AppCompatActivity {
         // if statements check the score and depending on user's score, different texts and images
         // is displayed.
         if (finalScore > 7) {
-            image.setImageResource(R.drawable.android_high);
+            image.setImageResource(R.mipmap.android_high);
             finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalHigh);
         } else if (finalScore < 8 && finalScore > 4) {
-            image.setImageResource(R.drawable.android_mid);
+            image.setImageResource(R.mipmap.android_mid);
             finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalMed);
         } else if (finalScore < 5) {
-            image.setImageResource(R.drawable.android_low);
+            image.setImageResource(R.mipmap.android_low);
             finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalLow);
         }
