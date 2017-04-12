@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/grey</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/lime</item>
 
     </style>
 
@@ -143,6 +143,7 @@
         <item name="android:layout_height">0dp</item>
         <item name="android:layout_weight">4</item>
 
+
     </style>
 
     <style name="quizChildLinearLayout">
@@ -155,6 +156,14 @@
     <style name="quizRadioCheckButtons">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">@dimen/textSizeHeader4</item>
+        <item name="android:paddingLeft">@dimen/paddingRadioBLeft</item>
+        <item name="android:textColor">@color/lime</item>
+        <item name="android:button">@drawable/radio_draw</item>
+        <item name="colorAccent">@android:color/white</item>
+        <item name="android:paddingBottom">@dimen/paddingRadioB</item>
+
     </style>
 
     <style name="buttonQuizActivity">

@@ -37,13 +37,12 @@ public class QuizActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     Button right, left;            // @right,@left Buttons that will be used in CardViews
     TextView question;             // @question TextView that will be used in CardViews
-    TextView finalScore, finalText; // @finalScore,@finalText TextView that will be used in final
+    TextView finalScoreText, finalText; // @finalScoreText,@finalText TextView that will be used in final
     // score CardView
     //----------------------------------------------------------------------------------------------
     ImageView image;               // @image ImageView that will be used in CardViews
     //----------------------------------------------------------------------------------------------
     int questionNumber;            // @questionNumber stores question number
-    double scores;                 // @scores stores user's score
     //----------------------------------------------------------------------------------------------
     int[] questions = new int[]{   // @questions stores all the questions
             R.string.question1, R.string.question2, R.string.question3,
@@ -77,9 +76,10 @@ public class QuizActivity extends AppCompatActivity {
     //----------------------------------------------------------------------------------------------
     // @correctAnswersInsertT stores correct answers for user insert type question.
     String correctAnswersInsertT;
-    // @questionOpenBefore stores info if question was already answered.
-    boolean[] questionOpenBefore = new boolean[10];
-
+    // @questionScores stores score for each question answered.
+    Double[] questionScores = new Double [10];
+    // @finalScoreText stores final score.
+    Double finalScore;
     //----------------------------------------------------------------------------------------------
     @Override
     protected void onCreate(Bundle savedInstance) {
@@ -87,7 +87,8 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
         // Save the user's current game state
         if (savedInstance != null) {
-            scores = savedInstance.getDouble(SAVE_SCORE, scores);
+            for (int i = 0; i < questionScores.length; i++)
+                questionScores[i] = savedInstance.getDouble(SAVE_SCORE, questionScores[i]);
             questionNumber = savedInstance.getInt(SAVE_CURRENT_QUESTION, questionNumber);
         }
         // Put string resources into @correctAnswersRadioB.
@@ -101,9 +102,6 @@ public class QuizActivity extends AppCompatActivity {
                 this.getResources().getInteger(R.integer.correctAnswer8), 0,
                 this.getResources().getInteger(R.integer.correctAnswer10)
         };
-        // Reset @questionOpenBefore
-        for (int i = 0; i < questionOpenBefore.length; i++)
-            questionOpenBefore[i] = false;
         // Put string resources into @correctAnswersCheckB, @correctAnswersInsertT.
         correctAnswersCheckB = new int[]{
                 this.getResources().getInteger(R.integer.correctAnswer2),
@@ -111,7 +109,9 @@ public class QuizActivity extends AppCompatActivity {
         };
         correctAnswersInsertT = this.getString(R.string.correctAnswer9);
         // Reset user score.
-        scores = 0;
+        for (int i = 0; i < questionScores.length; i++)
+            questionScores[i] = 0.0;
+        finalScore = 0.0;
         // Find views in the XML resources.
         cardViewCheckB = (CardView) findViewById(R.id.cardViewCheckB);
         cardViewRadioB = (CardView) findViewById(R.id.cardViewRadioB);
@@ -126,7 +126,8 @@ public class QuizActivity extends AppCompatActivity {
     // Save state when rotating
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putDouble(SAVE_SCORE, scores);
+        for (int i = 0; i < questionScores.length; i++)
+            savedInstanceState.putDouble(SAVE_SCORE, questionScores[i]);
         savedInstanceState.putInt(SAVE_CURRENT_QUESTION, questionNumber);
         super.onSaveInstanceState(savedInstanceState);
     }
@@ -265,6 +266,7 @@ public class QuizActivity extends AppCompatActivity {
                 answersRadio[tempIndex].setText(answersRadioB[i]);
                 tempIndex++;
             }
+
         }
         //--------------------------------------------------------------------------------------
     }
@@ -285,11 +287,9 @@ public class QuizActivity extends AppCompatActivity {
             if (questionNumber != 1 && questionNumber < 8){
                 // if statement checks if correct answer is checked and increases score if so and
                 // checks question answered.
-                if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()
-                        && !questionOpenBefore[questionNumber]) {
-                    scores++;
-                    questionOpenBefore[questionNumber] = true;
-                    Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+                if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()) {
+                    questionScores[questionNumber] = 1.0;
+                    Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -305,20 +305,16 @@ public class QuizActivity extends AppCompatActivity {
                     }
                     // else if statement checks if both correct answers is checked and gives 1 point and
                     // checks question answered.
-                    else if (answersCheckBox[0].isChecked() && answersCheckBox[3].isChecked() &&
-                            !questionOpenBefore[questionNumber]) {
-                        scores++;
-                        questionOpenBefore[questionNumber] = true;
-                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+                    else if (answersCheckBox[0].isChecked() && answersCheckBox[3].isChecked()) {
+                        questionScores[questionNumber] = 1.0;
+                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
 
                     }
                     //else if statement checks if either correct answer is checked and gives 0.5 points.
                     // and checks question answered.
-                    else if (answersCheckBox[0].isChecked() || answersCheckBox[3].isChecked() &&
-                            !questionOpenBefore[questionNumber]) {
-                        scores += 0.5;
-                        questionOpenBefore[questionNumber] = true;
-                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
+                    else if (answersCheckBox[0].isChecked() || answersCheckBox[3].isChecked()) {
+                        questionScores[questionNumber] = 0.5;
+                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
 
                     }
                 }
@@ -330,12 +326,9 @@ public class QuizActivity extends AppCompatActivity {
                     // User input answer is getting stored into @answerInsertText String.
                     answerInsertText = insertedAnswer.getText().toString();
                     // If user input is correct score is increased by 1. and checks question answered.
-                    if (answerInsertText.equals(correctAnswersInsertT) &&
-                            !questionOpenBefore[questionNumber]) {
-                        scores++;
-                        Toast.makeText(this,Double.toString(scores),Toast.LENGTH_SHORT).show();
-
-                        questionOpenBefore[questionNumber] = true;
+                    if (answerInsertText.equals(correctAnswersInsertT)) {
+                        questionScores[questionNumber] = 1.0;
+                        Toast.makeText(this,Double.toString(questionScores[questionNumber]),Toast.LENGTH_SHORT).show();
                     }
                 }
             //--------------------------------------------------------------------------------------
@@ -353,10 +346,12 @@ public class QuizActivity extends AppCompatActivity {
         //------------------------------------------------------------------------------------------
         else if (questionNumber == 9) {
             if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked()) {
-                scores++;
-                Toast.makeText(getApplicationContext(), Double.toString(scores),
+                questionScores[questionNumber] = 1.0;
+                Toast.makeText(getApplicationContext(), Double.toString(questionScores[questionNumber]),
                         Toast.LENGTH_SHORT).show();
             }
+            for(int i = 0; i < questionScores.length; i++)
+                finalScore += questionScores[i];
             finalScore();
         }
         //------------------------------------------------------------------------------------------
@@ -391,7 +386,7 @@ public class QuizActivity extends AppCompatActivity {
         cardViewFinalScore.setVisibility(View.VISIBLE);
         // Find Views from XML.
         image = (ImageView) cardViewFinalScore.findViewById(finalImage);
-        finalScore = (TextView) cardViewFinalScore.findViewById(R.id.finalScore);
+        finalScoreText = (TextView) cardViewFinalScore.findViewById(R.id.finalScore);
         finalText = (TextView) cardViewFinalScore.findViewById(R.id.finalText);
         left = (Button) cardViewFinalScore.findViewById(R.id.finalButtonLeft);
         right = (Button) cardViewFinalScore.findViewById(R.id.finalButtonRight);
@@ -400,17 +395,17 @@ public class QuizActivity extends AppCompatActivity {
         right.setText(R.string.share);
         // if statements check the score and depending on user's score, different texts and images
         // is displayed.
-        if (scores > 7) {
+        if (finalScore > 7) {
             image.setImageResource(R.drawable.android_high);
-            finalScore.setText(Double.toString(scores));
+            finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalHigh);
-        } else if (scores < 8 && scores > 4) {
+        } else if (finalScore < 8 && finalScore > 4) {
             image.setImageResource(R.drawable.android_mid);
-            finalScore.setText(Double.toString(scores));
+            finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalMed);
-        } else if (scores < 5) {
+        } else if (finalScore < 5) {
             image.setImageResource(R.drawable.android_low);
-            finalScore.setText(Double.toString(scores));
+            finalScoreText.setText(Double.toString(finalScore));
             finalText.setText(R.string.finalLow);
         }
     }
@@ -430,11 +425,12 @@ public class QuizActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
         intent.putExtra(Intent.EXTRA_SUBJECT, "Checkout my Android Development quiz score !");
-        intent.putExtra(Intent.EXTRA_TEXT, "I have scored " + Double.toString(scores));
+        intent.putExtra(Intent.EXTRA_TEXT, "I have scored " + Double.toString(finalScore));
         if (intent.resolveActivity(getPackageManager()) != null)
             startActivity(intent);
     }
     //----------------------------------------------------------------------------------------------
+
 }
 
 
