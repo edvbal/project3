@@ -366,7 +366,7 @@ public class QuizActivity extends AppCompatActivity {
                     Toast.makeText(this,"Please insert an answer !",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else if (answerInsertText.equals(correctAnswersInsertT)) {
+                else if (answerInsertText.equalsIgnoreCase(correctAnswersInsertT)) {
                     questionScores[questionNumber] = 1.0;
                 }
             }
