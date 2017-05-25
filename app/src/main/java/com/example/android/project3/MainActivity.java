@@ -29,14 +29,13 @@ public class MainActivity extends AppCompatActivity {
         enterName = (EditText) findViewById(R.id.enterName);
         startQuizz = (Button) findViewById(R.id.startQuizz);
     }
-
     //----------------------------------------------------------------------------------------------
     // @startQuizz method that sets user name and question number variables starts QuizActivity
     //----------------------------------------------------------------------------------------------
     public void startQuizz(View view) {
         // if statement checks if edit text field for name is not empty
         if (enterName.getText().toString().isEmpty()) {
-            Toast.makeText(this, "First enter your name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.firstEnterName, Toast.LENGTH_SHORT).show();
         } else {
             // user name input will be stored as name in internal storage
             SharedPreferences name = this.getSharedPreferences("name", Context.MODE_PRIVATE);
@@ -48,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor edit2 = question.edit();
             edit2.putInt("question", 0);
             edit2.apply();
-            Toast.makeText(this,"Good luck "+enterName.getText().toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.goodLuck)+enterName.getText().toString(),Toast.LENGTH_SHORT).show();
             // starts QuizActivity
             Intent intent = new Intent(this, QuizActivity.class);
             startActivity(intent);
-            String string = "asd";
         }
     }
     //----------------------------------------------------------------------------------------------

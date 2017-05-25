@@ -292,7 +292,6 @@ public class QuizActivity extends AppCompatActivity {
                 answersRadio[tempIndex].setText(answersRadioB[i]);
                 tempIndex++;
             }
-
         }
         //--------------------------------------------------------------------------------------
     }
@@ -316,7 +315,7 @@ public class QuizActivity extends AppCompatActivity {
                     if (button.isChecked())
                         temp++;
                 if (temp == 0) {
-                    Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.checkAnswer, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // if statement checks if correct answer is checked and increases score if so and
@@ -333,14 +332,14 @@ public class QuizActivity extends AppCompatActivity {
                     if (button.isChecked())
                         temp++;
                 if (temp == 0) {
-                    Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.checkAnswer, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 //if statement checks if all answers is checked and if it is informs user to fix it.
                 if (answersCheckBox[0].isChecked() && answersCheckBox[1].isChecked() &&
                         answersCheckBox[2].isChecked() && answersCheckBox[3].isChecked()) {
                     Toast.makeText(this,
-                            "You can't select all the options !", Toast.LENGTH_SHORT).show();
+                            R.string.cantAllOptions, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // else if statement checks if both correct answers is checked and gives 1 point and
@@ -363,7 +362,7 @@ public class QuizActivity extends AppCompatActivity {
                 answerInsertText = insertedAnswer.getText().toString();
                 // If user input is correct score is increased by 1. Also checks if input isnt empty
                 if(answerInsertText.isEmpty()){
-                    Toast.makeText(this,"Please insert an answer !",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.insertAnswer,Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else if (answerInsertText.equalsIgnoreCase(correctAnswersInsertT)) {
@@ -389,7 +388,7 @@ public class QuizActivity extends AppCompatActivity {
                 if (button.isChecked())
                     temp++;
             if (temp == 0) {
-                Toast.makeText(this, "Please, check atleast one answer !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.checkAnswer, Toast.LENGTH_SHORT).show();
                 return;
             }
             if (answersRadio[correctAnswersRadioB[questionNumber]].isChecked())
@@ -439,7 +438,7 @@ public class QuizActivity extends AppCompatActivity {
         // Setting buttons text.
         left.setText(R.string.toMenu);
         right.setText(R.string.share);
-        Toast.makeText(this,"You have scored : " + Double.toString(finalScore),
+        Toast.makeText(this,getString(R.string.youScored) + Double.toString(finalScore),
                 Toast.LENGTH_SHORT).show();
         // if statements check the score and depending on user's score, different texts and images
         // is displayed.
@@ -475,8 +474,8 @@ public class QuizActivity extends AppCompatActivity {
     public void shareButton(View view) {
         Intent intent = new Intent(Intent.ACTION_SENDTO);
         intent.setData(Uri.parse("mailto:")); // only email apps should handle this
-        intent.putExtra(Intent.EXTRA_SUBJECT, "Checkout my Android Development quiz score !");
-        intent.putExtra(Intent.EXTRA_TEXT, "I have scored " + Double.toString(finalScore));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.checkMyScore));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.emailMyScore) + Double.toString(finalScore));
         if (intent.resolveActivity(getPackageManager()) != null)
             startActivity(intent);
     }

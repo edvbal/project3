@@ -74,9 +74,19 @@
     <string name="enterAnswer">Enter your answer here</string>
     <string name="points"> Points</string>
     <!--.........................................................................................-->
+    <!--.Toasts.......................................................-->
+    <string name="checkAnswer">Please, check atleast one answer !</string>
+    <string name="insertAnswer">Please insert an answer !</string>
+    <string name="cantAllOptions">You can\'t select all the options !</string>
+    <string name="youScored">You have scored :</string>
+    <string name="firstEnterName">First enter your name</string>
+    <string name="goodLuck">Good luck</string>
+    <!--.........................................................................................-->
     <!--.Final score texts.......................................................................-->
     <string name="finalHigh">You are the SUPERMAN of Android Developing !</string>
     <string name="finalMed">You are certainly not a newbie, but there are some things you need to learn</string>
     <string name="finalLow">There is a lot of things you need to learn about Android Development, but dont be sad, you will do better next time !</string>
+    <string name="checkMyScore">Checkout my Android Development quiz score !</string>
+    <string name="emailMyScore">I have scored</string>
     <!--.........................................................................................-->
 </resources>
