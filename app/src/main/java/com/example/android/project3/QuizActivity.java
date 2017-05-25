@@ -439,6 +439,8 @@ public class QuizActivity extends AppCompatActivity {
         // Setting buttons text.
         left.setText(R.string.toMenu);
         right.setText(R.string.share);
+        Toast.makeText(this,"You have scored : " + Double.toString(finalScore),
+                Toast.LENGTH_SHORT).show();
         // if statements check the score and depending on user's score, different texts and images
         // is displayed.
         if (finalScore > 7) {
